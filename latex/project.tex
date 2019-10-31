@@ -448,7 +448,63 @@ Using the artificial intelligence speech recognition technology of SKTelecom's N
 
 In addition, the UI is configured to maximize the clarity of the content by using a large image and text, and to better understand the content by users with low vision. As the size of the content increases, the amount of information that can be contained on one screen decreases, so the UI is designed to implement the same business logic as the existing despite the reduced amount of information.
 
+\section{Development Requirement}
+
+\subsection{Sofrtware Development Platforms}
+
+\subsubsection{Node.js}
+
+Node.js is an open-source, cross-platform, JavaScript runtime environment that executes JavaScript code outside of a browser. Node.js lets developers use JavaScript to write command line tools and for server-side scripting—running scripts server-side to produce dynamic web page content before the page is sent to the user's web browser. Consequently, Node.js represents a "JavaScript everywhere" paradigm, unifying web application development around a single programming language, rather than different languages for server- and client-side scripts.
+
+\subsubsection{React.js}
+
+React (also known as React.js or ReactJS) is a JavaScript library for building user interfaces. It is maintained by Facebook and a community of individual developers and companies. React can be used as a base in the development of single-page or mobile applications, as it is optimal for fetching rapidly changing data that needs to be recorded.
+
+\subsection{Programming Languages}
+
+\subsubsection{Javascript}
+
+Javascript is a high-level, interpreted scripting language that conforms to the ECMAScript specification. Javascript has flexible grammars: freedom from indentation, loose type checks. Also, it adopts modern progamming padigms and has convenient and great features: function programming, reactive programming. By using this language we can learn various modern progamming paradigms. Javascript is used in web browsers, which means it does not require any special working environment to run program written by Javascript.
+
+\subsection{Cost Estimation}
+
+This project heavily rely on Amazon Web Service. The cost estimation is in Table~\ref{tab:table2}\ . This is calculated by Amazon Web Service Cost Calulator.
+
+\begin{table}[h] {\renewcommand\arraystretch{1.25}
+\begin{tabular}{|l|l|l|l|} \hline
+\bf Service & \bf Region & \bf \multicolumn{1}{l}{Cost(Monthly)} \\ \hline
+
+Amazon EC2 & Asia Pacific (Seoul) & \multicolumn{1}{p{3.3cm}|}{\raggedright USD(\$) 11.65} \\ \hline
+Amazon RDS & Asia Pacific (Seoul) & \multicolumn{1}{p{3.3cm}|}{\raggedright USD(\$) 19.64} \\ \hline
+
+\end{tabular}} \\
+\caption{Cost estimation for the project}
+\label{tab:table2}
+\end{table}
+
+\subsection{Development Environment Description}
+
+Used development environment tools information is described in Table~\ref{tab:table3}\ .
+
+\begin{table}[h] {\renewcommand\arraystretch{1.25}
+\begin{tabular}{|l|l|l|l|} \hline
+\bf Name & \bf Version & \bf \multicolumn{1}{l}{Description} \\ \hline
+
+Windows & 10 Pro & \multicolumn{1}{p{3.3cm}|}{\raggedright Operating System made by Microsoft} \\ \hline
+macOS & Catalina(10.15) & \multicolumn{1}{p{3.3cm}|}{\raggedright Operating System made by Apple, used in Macbook} \\ \hline
+Ubuntu & 16.04.6 & \multicolumn{1}{p{3.3cm}|}{\raggedright Operating System developed by Linux Foundation} \\ \hline
+Visual Studio Code & 1.39.1 & \multicolumn{1}{p{3.3cm}|}{\raggedright Text editor and Integrated Development Editor made by Microsoft} \\ \hline
+Atom.io & 1.40.1 & \multicolumn{1}{p{3.3cm}|}{\raggedright Text editor and Integrated Development Editor made by GitHub} \\ \hline
+iTerm2 & 3.3.6 & \multicolumn{1}{p{3.3cm}|}{\raggedright Terminal Emulator used in macOS} \\ \hline
+Z shell(zsh) & 5.7.1 & \multicolumn{1}{p{3.3cm}|}{\raggedright Unix shell for CLI} \\ \hline
+
+\end{tabular}} \\
+\caption{Role assignment for each participants of this project}
+\label{tab:table3}
+\end{table}
+
 \subsection{Market Research}
+% Software in Use
 
 \subsubsection{Kiosk Market in Korea}
 Unmanned stores are spreading all over the world. The unmanned store are actively being made due to artificial intelligence, the Internet of Things, the development of sensor technology, the lack of labor force and the minimum wage hike. South Korea has been burdened with labor costs following a 10-percent minimum wage hike for two consecutive years, and the unmanned era is in full swing due to the spread of an "untact" culture that is reluctant to contact. In restaurants, customers order on their own through KIOSK. And unmanned convenience stores have begun to sprout up everywhere. Unmanned store is spreading not only in the retail industry but in almost all areas, regardless of industry. Demand for kiosks is also on the rise as unmanned stores have emerged. A market for unmanned payments using kiosks is emerging. As of 2017, the size of South Korea's kiosk market is estimated to be around 250 billion won, with a high annual growth rate of 14 percent. The market, which stood at only 60 billion won in 2006, rose to 180 billion won in 2013 and rose to 250 billion won in 2017.
@@ -463,18 +519,19 @@ There are services in the market called artificial intelligence voice assistant 
 \subsubsection{Delivery Application}
 We think the delivery app is the same situation as the kiosk we are currently thinking about. Orders, which were previously made through voice-to-speech conversations over the phone, have been made possible through the application with several touch points. There are many advantages, such as the availability of personalized orders through delivery apps, but it is still a far from those who are not familiar with digital culture. If Kiosk's problem is solved, it is believed that the delivery app will be able to solve the problem in the same way later.
 
-\section{Role Assignments}
-Role assignments is shown in Table~\ref{tab:table1}\ . Note that each project participants periodically switched their roles with the others to apply different perspectives and improve their expriences.
+\section{Task Distribution}
+
+Task Distribution is shown in Table~\ref{tab:table1}\ . Note that each project participants periodically switched their roles with the others to apply different perspectives and improve their expriences.
 
 \begin{table}[h] {\renewcommand\arraystretch{1.25}
 \begin{tabular}{|l|l|l|l|} \hline
-\bf Role & \bf Assignee & \bf \multicolumn{1}{l}{Description} \\ \hline
+\bf Task & \bf Assignee & \bf \multicolumn{1}{l}{Description} \\ \hline
 Project Manager & Kim Jung Mo & \multicolumn{1}{p{3.3cm}|}{\raggedright Schedule overall development plan and assign proper jobs to team members} \\ \hline
 Consumer & Lee Ha Min & \multicolumn{1}{p{3.3cm}|}{\raggedright Test and try out a prototype application, gather the potential improvement} \\ \hline
 User & Lee Hyo Sik & \multicolumn{1}{p{3.3cm}|}{\raggedright Gather basic feature requirement for this project by asking qeustioaires the eldery near the university.} \\ \hline
 Developer & Hwang Sung Woo & \multicolumn{1}{p{3.3cm}|}{\raggedright Prepare a development environment for this project and build up the application} \\ \hline
 \end{tabular}} \\
-\caption{Role assignment for each participants of this project}
+\caption{Task distribution  for each participants of this project}
 \label{tab:table1}
 \end{table}
 % https://goodtogreate.tistory.com/entry/LaTex-사용-Tip-정리
