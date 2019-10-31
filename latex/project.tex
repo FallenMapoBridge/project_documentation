@@ -503,7 +503,7 @@ Z shell(zsh) & 5.7.1 & \multicolumn{1}{p{3.3cm}|}{\raggedright Unix shell for CL
 \label{tab:table3}
 \end{table}
 
-\subsection{Market Research}
+\subsection{Market Research \& Software in Use}
 % Software in Use
 
 \subsubsection{Kiosk Market in Korea}
@@ -518,6 +518,10 @@ There are services in the market called artificial intelligence voice assistant 
 
 \subsubsection{Delivery Application}
 We think the delivery app is the same situation as the kiosk we are currently thinking about. Orders, which were previously made through voice-to-speech conversations over the phone, have been made possible through the application with several touch points. There are many advantages, such as the availability of personalized orders through delivery apps, but it is still a far from those who are not familiar with digital culture. If Kiosk's problem is solved, it is believed that the delivery app will be able to solve the problem in the same way later.
+
+\subsubsection{Starbucks Siren Order with Voice}
+T-Map x NUGU introduced a voice service for Starbucks' "Siren Order". The combination of "T-Map x Nugu" and "Siren Order" makes it possible for users to order for various Starbucks products with voice, even while driving. Orders are based on voice while driving, followed by beverage selection, neighborhood store selection, order product confirmation, order receipt and payment. In addition, linking T-map, by forwarding the order to the store within five minutes of arrival at the designated store, users were able to improve the inconvenience of waiting for the ordered product at the store for a long period of time, while considering the freshness of the product.
+% 출처 필요
 
 \section{Task Distribution}
 
@@ -536,31 +540,31 @@ Developer & Hwang Sung Woo & \multicolumn{1}{p{3.3cm}|}{\raggedright Prepare a d
 \end{table}
 % https://goodtogreate.tistory.com/entry/LaTex-사용-Tip-정리
 
-\section{Requirement Analysis}
+\section{Specification}
 Our service helps people who are not familiar with KIOSK to place voice-based orders. When the user presses the Speech Recognition button for an order and speaks, the voice file is passed to the server that was built with AWS. The server delivers the voice recognition file to the NUGU platform, which converts the voice file to text and returns the result to the server. (Results consist of text.) The server receives confirmation from the user about the order and then places the actual order within the server based on the user-requests.
 
-\subsection{Speech To Order}
+\subsection{Speech To Order(ID: 110)}
 \subsubsection{Receiving Voice Input from a User}
 \begin{enumerate}
   \item Receive raw voice input from users
   \item Send it to the server
 \end{enumerate}
 
-\subsubsection{Voice Preprocessing and Noise Removal}
+\subsubsection{Voice Preprocessing and Noise Removal(ID: 120)}
 \begin{enumerate}
   \item Receive voice from KIOSK
   \item Noise rejection for better voice processing
   \item Send noise-free voice to the NUGU server
 \end{enumerate}
 
-\subsubsection{Convert preprocessed speech into text data(Speech-To-Text)}
+\subsubsection{Convert preprocessed speech into text data(Speech-To-Text)(ID: 130)}
 \begin{enumerate}
   \item Receive noise-free voice
   \item Convert the voice to text
   \item Send the voice back to the server
 \end{enumerate}
 
-\subsubsection{Extract order data from text data}
+\subsubsection{Extract order data from text data(ID: 140)}
 \begin{enumerate}
   \item Receive converted text data from NUGU server
   \item Extract only significant data relevant to the order
@@ -568,7 +572,7 @@ Our service helps people who are not familiar with KIOSK to place voice-based or
   \item Send the information to KIOSK
 \end{enumerate}
 
-\subsubsection{Validate Extracted Order Data}
+\subsubsection{Validate Extracted Order Data(ID: 150)}
 \begin{enumerate}
   \item Receive the interpreted order information from the server
   \item Diplay the order information on the screen
@@ -580,7 +584,7 @@ Our service helps people who are not familiar with KIOSK to place voice-based or
   \item If the user has more to order, repeat from the beginning
 \end{enumerate}
 
-\subsubsection{PoS: Point of Sales System}
+\subsection{PoS: Point of Sales System(ID: 210)}
 \begin{enumerate}
   \item Show all menu list
   \item Add an order item to the total order list
@@ -589,6 +593,31 @@ Our service helps people who are not familiar with KIOSK to place voice-based or
   \item Send an order list to the server
 \end{enumerate}
 
+\subsection{Specification}
+
+\subsubsection{ID: 110}
+\begin{enumerate}
+  \item The length of voice received from the client is limited to up to 30 seconds.
+  \item Voice should be mentioned in order of menu and quantity. \\
+  ex) Hamburger hana(One), Cola du(Two) gae
+\end{enumerate}
+
+\subsubsection{ID: 130}
+\begin{enumerate}
+  \item Use NUGU API
+\end{enumerate}
+
+\subsubsection{ID: 140}
+\begin{enumerate}
+  \item Menu word, quantity word classified as signal data
+  \item Match each menu and quantity
+  \item When a word regarding quantity is encountered, it is recognized as the end of the corresponding menu-related order.
+\end{enumerate}
+
+\subsubsection{ID: 210}
+\begin{enumerate}
+  \item To show the behavior of KIOSK, show the same menu as the menu of any store.
+\end{enumerate}
 
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
