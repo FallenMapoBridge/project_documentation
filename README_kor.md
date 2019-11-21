@@ -1,7 +1,7 @@
 # VISQUIT - Voice IS a Quite Universal Interactive Tool
-이 repository는 docs에 관련된 내용만 포함되어있습니다. front-end와 back-end 관련 내용은 다음을 참조해주시기 바랍니다.
-[Front-end repository](https://github.com/FallenMapoBridge/visquit-frontend)
-[Back-end repository](https://github.com/FallenMapoBridge/visquit-backend)
+이 repository는 docs에 관련된 내용만 포함되어있습니다. front-end와 back-end 관련 내용은 다음을 참조해주시기 바랍니다.  
+[Front-end repository](https://github.com/FallenMapoBridge/visquit-frontend)  
+[Back-end repository](https://github.com/FallenMapoBridge/visquit-backend)  
 
 ## Abstract
 
