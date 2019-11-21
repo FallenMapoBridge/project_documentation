@@ -14,7 +14,7 @@ To solve this cost problem we suggest to use NUGU speaker, voice recognition tec
 We will heavily rely on SKTelecom's NUGU Platform to implement voice recognition feature. We will develop UI with React.js library, compose backend structure with Node.js, and build CI/CD infrastructure with Docker and Jenkins.
 
 ## User Interface for Client
-We provide the client with a function of menu management and order checking.
+We provide our customers with menu management and order checking functions.  
 
 ![Client UI](/src/Client_UI_1.png)
 ![Client UI](/src/Client_UI_2.png)
