@@ -28,6 +28,10 @@ SK Nugu Platform의 인공지능 음성 인식 기술을 활용하여, 사용자
 
 또한 기존의 키오스크와 다르게 NUGU 스피커만 있으면 되기 때문에 비용적인 부담도 줄여줄 수 있다.
 
+## Structure
+전체 구조는 다음과 같다.  
+![Structure](/src/structure.PNG)
+
 ## User Interface for Client
 우리는 고객에게 메뉴 관리와 주문 확인 기능을 제공하고자 한다.
 
