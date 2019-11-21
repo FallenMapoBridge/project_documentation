@@ -4,9 +4,9 @@
 
 <!-- [Go to the Page 🎢](https://FallenMapoBridge.github.io) -->
 
-This repository contains only content related to docs. For front-end and back-end information, please refer to:
-[Front-end repository](https://github.com/FallenMapoBridge/visquit-frontend)
-[Back-end repository](https://github.com/FallenMapoBridge/visquit-backend)
+This repository contains only content related to docs. For front-end and back-end information, please refer to:  
+[Front-end repository](https://github.com/FallenMapoBridge/visquit-frontend)  
+[Back-end repository](https://github.com/FallenMapoBridge/visquit-backend)  
 
 ## Abstract
 VISQUIT is order service powered by voice recognition technology based on artificial intelligence. Nowadays, many stores adopt using KIOSK system, by which the cost of hiring clerks and the time spent to make an individual order reduce. However, the problem is that installing the kiosk is still expensive.
