@@ -59,9 +59,12 @@
 % manually specify the path to it like:
 % \documentclass[conference,compsoc]{../sty/IEEEtran}
 
-
 % 직접 추가한 패키지
+\usepackage{cleveref, array, booktabs, threeparttable}
+\usepackage[labelsep=period, font={footnotesize, sc}]{caption}
+
 \usepackage{tabularx}
+\usepackage{graphicx}
 
 % Some very useful LaTeX packages include:
 % (uncomment the ones you want to load)
@@ -251,9 +254,6 @@
 % The latest version and documentation of subfig.sty can be obtained at:
 % http://www.ctan.org/pkg/subfig
 
-
-
-
 % *** FLOAT PACKAGES ***
 %
 %\usepackage{fixltx2e}
@@ -397,14 +397,8 @@ Email: hsw0194@gmail.com}
 %Telephone: (800) 555--1212, Fax: (888) 555--1212}
 %\IEEEauthorblockA{\IEEEauthorrefmark{4}Tyrell Inc., 123 Replicant Street, Los Angeles, California 90210--4321}}
 
-
-
-
 % use for special paper notices
 %\IEEEspecialpapernotice{(Invited Paper)}
-
-
-
 
 % make the title area
 \maketitle
@@ -490,39 +484,45 @@ Javascript is a high-level, interpreted scripting language that conforms to the 
 
 \subsection{Cost Estimation}
 
-This project heavily rely on Amazon Web Service. The cost estimation is in Table~\ref{tab:table2}\ . This is calculated by Amazon Web Service Cost Calulator.
+This project heavily rely on Amazon Web Service. The cost estimation is in Table 1. This is calculated by Amazon Web Service Cost Calulator.
 
-\begin{table}[h] {\renewcommand\arraystretch{1.25}
-\begin{tabular}{|l|l|l|l|} \hline
-\bf Service & \bf Region & \bf \multicolumn{1}{l}{Cost(Monthly)} \\ \hline
-
-Amazon EC2 & Asia Pacific (Seoul) & \multicolumn{1}{p{3.3cm}|}{\raggedright USD(\$) 11.65} \\ \hline
-Amazon RDS & Asia Pacific (Seoul) & \multicolumn{1}{p{3.3cm}|}{\raggedright USD(\$) 19.64} \\ \hline
-
-\end{tabular}} \\
-\caption{Cost estimation for the project}
-\label{tab:table2}
+\begin{table}[ht!] \renewcommand\arraystretch{1.25}
+  \begin{threeparttable}
+      \caption{Role assignment for each participants of this project%
+      \label{tab:table1}}    %% Caption above tabular, label inside caption
+      \begin{tabular}{@{}l l>{\raggedright\arraybackslash}p{3.8cm}@{}}
+      \toprule
+      \bfseries Service & \bfseries Region & \multicolumn{1}{l}{\bfseries Cost(Monthly)} \\
+      \midrule
+      Amazon EC2 & Asia Pacific (Seoul) & USD(\$) 11.65 \\
+      Amazon RDS & Asia Pacific (Seoul) & USD(\$) 19.64 \\
+      \bottomrule
+      \end{tabular}
+  \end{threeparttable}
 \end{table}
 
 \subsection{Development Environment Description}
 
-Used development environment tools information is described in Table~\ref{tab:table3}\ .
+Used development environment tools information is described in Table 2.
 
-\begin{table}[h] {\renewcommand\arraystretch{1.25}
-\begin{tabular}{|l|l|l|l|} \hline
-\bf Name & \bf Version & \bf \multicolumn{1}{l}{Description} \\ \hline
-
-Windows & 10 Pro & \multicolumn{1}{p{3.3cm}|}{\raggedright Operating System made by Microsoft} \\ \hline
-macOS & Catalina(10.15) & \multicolumn{1}{p{3.3cm}|}{\raggedright Operating System made by Apple, used in Macbook} \\ \hline
-Ubuntu & 16.04.6 & \multicolumn{1}{p{3.3cm}|}{\raggedright Operating System developed by Linux Foundation} \\ \hline
-Visual Studio Code & 1.39.1 & \multicolumn{1}{p{3.3cm}|}{\raggedright Text editor and Integrated Development Editor made by Microsoft} \\ \hline
-Atom.io & 1.40.1 & \multicolumn{1}{p{3.3cm}|}{\raggedright Text editor and Integrated Development Editor made by GitHub} \\ \hline
-iTerm2 & 3.3.6 & \multicolumn{1}{p{3.3cm}|}{\raggedright Terminal Emulator used in macOS} \\ \hline
-Z shell(zsh) & 5.7.1 & \multicolumn{1}{p{3.3cm}|}{\raggedright Unix shell for CLI} \\ \hline
-
-\end{tabular}} \\
-\caption{Role assignment for each participants of this project}
-\label{tab:table3}
+\begin{table}[ht!] \renewcommand\arraystretch{1.25}
+  \begin{threeparttable}
+      \caption{Role assignment for each participants of this project%
+      \label{tab:table2}}    %% Caption above tabular, label inside caption
+      \begin{tabular}{@{}l l>{\raggedright\arraybackslash}p{3.8cm}@{}}
+      \toprule
+      \bfseries Name & \bfseries Version & \multicolumn{1}{l}{\bfseries Description} \\
+      \midrule
+      Windows & 10 Pro & Operating System made by Microsoft \\
+      macOS & Catalina(10.15) & Operating System made by Apple, used in Macbook \\
+      Ubuntu & 16.04.6 & Operating System developed by Linux Foundation \\
+      Visual Studio Code & 1.39.1 & Text editor and Integrated Development Editor made by Microsoft \\
+      Atom.io & 1.40.1 & Text editor and Integrated Development Editor made by GitHub \\
+      iTerm2 & 3.3.6 & Terminal Emulator used in macOS \\
+      Z shell(zsh) & 5.7.1 & Unix shell for CLI \\
+      \bottomrule
+      \end{tabular}
+  \end{threeparttable}
 \end{table}
 
 \subsection{Market Research \& Software in Use}
@@ -547,20 +547,24 @@ T-Map x NUGU introduced a voice service for Starbucks' "Siren Order". The combin
 
 \section{Task Distribution}
 
-Task Distribution is shown in Table~\ref{tab:table1}\ . Note that each project participants periodically switched their roles with the others to apply different perspectives and improve their expriences.
+Task Distribution is shown in Table 3. Note that each project participants periodically switched their roles with the others to apply different perspectives and improve their expriences.
 
-\begin{table}[h] {\renewcommand\arraystretch{1.25}
-\begin{tabular}{|l|l|l|l|} \hline
-\bf Task & \bf Assignee & \bf \multicolumn{1}{l}{Description} \\ \hline
-Project Manager & Kim Jung Mo & \multicolumn{1}{p{3.3cm}|}{\raggedright Schedule overall development plan and assign proper jobs to team members} \\ \hline
-Consumer & Lee Ha Min & \multicolumn{1}{p{3.3cm}|}{\raggedright Test and try out a prototype application, gather the potential improvement} \\ \hline
-User & Lee Hyo Sik & \multicolumn{1}{p{3.3cm}|}{\raggedright Gather basic feature requirement for this project by asking qeustioaires the eldery near the university.} \\ \hline
-Developer & Hwang Sung Woo & \multicolumn{1}{p{3.3cm}|}{\raggedright Prepare a development environment for this project and build up the application} \\ \hline
-\end{tabular}} \\
-\caption{Task distribution  for each participants of this project}
-\label{tab:table1}
+\begin{table}[ht!] \renewcommand\arraystretch{1.25}
+  \begin{threeparttable}
+      \caption{Task distribution  for each participants of this project%
+      \label{tab:table1}}    %% Caption above tabular, label inside caption
+      \begin{tabular}{@{}l l>{\raggedright\arraybackslash}p{4.7cm}@{}}
+      \toprule
+      \bfseries Task & \bfseries Assignee & \multicolumn{1}{l}{\bfseries Description} \\
+      \midrule
+      Project Manager & Alice & Schedule overall development plan and assign proper jobs to team members \\ 
+      Consumer & Bob & Test and try out a prototype application, gather the potential improvement \\ 
+      User & Chris & Gather basic feature requirement for this project by asking questionnaires the elderly near the university. \\ 
+      Developer & Daniel & Prepare a development environment for this project and build up the application \\
+      \bottomrule
+      \end{tabular}
+  \end{threeparttable}
 \end{table}
-% https://goodtogreate.tistory.com/entry/LaTex-사용-Tip-정리
 
 \section{Specification}
 Our service helps people who are not familiar with KIOSK to place voice-based orders. When the user presses the Speech Recognition button for an order and speaks, the voice file is passed to the server that was built with AWS. The server delivers the voice recognition file to the NUGU platform, which converts the voice file to text and returns the result to the server. (Results consist of text.) The server receives confirmation from the user about the order and then places the actual order within the server based on the user-requests.
@@ -640,6 +644,64 @@ Our service helps people who are not familiar with KIOSK to place voice-based or
 \begin{enumerate}
   \item To show the behavior of KIOSK, show the same menu as the menu of any store.
 \end{enumerate}
+
+\section{Architecture Design}
+
+\subsection{Overall Architecture}
+
+Our service is web-based application and heavily depends on Amazon Web Service for deployment. Our application's UI is implemented with React.js. Our server is implemented by Node.js with Express.js web server on it to serve service data to frontend UI as REST API, and interact with SKTelecom NUGU's API and speaker. (DESCRIPTION FOR INFRA AND CLOUD ARCHITECTURE SHOULD BE ADDED). Figure 1 shows overall architecture of the service.
+
+\begin{figure}[h!]
+  \includegraphics[width=\linewidth]{figures/architecture.png}
+  \caption{Overall system architecture diagram}
+  \label{fig:architecture}
+\end{figure}
+
+\subsection{Directory Organization - Frontend}
+
+Table 4 shows the directory organization of React.js frontend application's project.
+
+\begin{table}[ht!] \renewcommand\arraystretch{1.25}
+  \begin{threeparttable}
+      \caption{Directory Organization for Frontend Application Project%
+      \label{tab:table5}}    %% Caption above tabular, label inside caption
+      \begin{tabular}{@{}l l>{\raggedright\arraybackslash}p{3.2cm}@{}}
+      \toprule
+      \bfseries Directory & \bfseries File name(s) & \multicolumn{1}{l}{\bfseries Modules used} \\
+      \midrule
+      /src/components & Component.js & Storybook \\
+      /src/containers & ComponentContainer.js & Redux.js, axios \\
+      /src/pages & App.js, Page.js & React Router \\
+      /redux & module.js & Redux.js \\
+      .storybook & config.js, addon.js & Storybook \\
+      \bottomrule
+      \end{tabular}
+  \end{threeparttable}
+\end{table}
+
+\subsubsection{/components}
+React codes implementing each UI assets used to compose the Frontend UI. Basic design concept is based on Material-UI and we modified it according to our purpose.
+
+\subsubsection{/containers}
+React codes including states, event listeners, and functions used in each pages. The structure and workflow are based on Redux. States and functions are initialized in this code and passed into each UI components.
+
+\subsubsection{/pages}
+Index codes where each routings start. Each routings are provided via React Router. Our service's frontend UI is rendered by React-based client-side rendering, where page routing executes in frontend, not backend.
+
+\subsubsection{.storybook}
+Storybook is a test framework that eases developers by allowing to check each design assets independently on the screen rapidly. With storybook, we can check if a design asset is correctly implemented without running entire service, improving efficiency of development process and easing the communication with designers and planners.
+
+\subsubsection{Axios}
+Axios is Promise based HTTP client for the browser and Node.js. It is used to request data from API server.
+
+\subsubsection{Webpack}
+Webpack is a module bundler used to combine all codes and resources in a project into a single file, also providing size minifying. Our service is optimized with Webpack to rapidly serve our web page to users.
+
+\subsubsection{Babel}
+Babel is a JavaScript transpiler that converts React syntax into plain JavaScript codes, downgrades ES6+ JavaScript syntax into ES5 syntax. This is a required module to execute React-based project.
+
+\section{Use Cases}
+
 
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
