@@ -66,6 +66,8 @@
 \usepackage{tabularx}
 \usepackage{graphicx}
 
+\usepackage{kotex}
+
 % Some very useful LaTeX packages include:
 % (uncomment the ones you want to load)
 
@@ -442,9 +444,88 @@ Using the artificial intelligence speech recognition technology of SKTelecom's N
 
 In addition, the UI is configured to maximize the clarity of the content by using a large image and text, and to better understand the content by users with low vision. As the size of the content increases, the amount of information that can be contained on one screen decreases, so the UI is designed to implement the same business logic as the existing despite the reduced amount of information.
 
-\section{Development Requirement}
+\section{Requirements}
 
-\subsection{Sofrtware Development Platforms}
+\subsection{User side}
+
+\subsubsection{View Menu List (ID 101)}
+\begin{enumerate}
+  \item Provide menu list with paper or tablet
+\end{enumerate}
+
+\subsubsection{Order by Voice (ID 102)}
+\begin{enumerate}
+  \item SKT NUGU Speaker handles this
+  \item Accept orders according to Intent and Entity
+  % \item Intent (order.burger, order.set, order.side, order.beverage, order.morning, etc) 
+  % \item Entity (Burgers, sets, sides, beverages, mornings, BID_QT_COUNT, etc) 
+\end{enumerate}
+
+\subsubsection{Check Menu (ID 103)}
+\begin{enumerate}
+  \item Send an order from the Nugu speaker to the backend proxy
+  \item Total orders in Backend proxy based on Entity
+  \item Transfer the aggregated order back to the Nugu speaker to confirm the order using the TTS function
+  \item Send user confirmation to backend proxy
+\end{enumerate}
+
+\subsubsection{Payment (ID 104)}
+\begin{enumerate}
+  \item Customer could pay with card  
+\end{enumerate}
+
+\subsection{Client Side}
+
+\subsubsection{Log-in (ID 201)}
+\begin{enumerate}
+  \item To identify clients, require client to log in  
+\end{enumerate}
+
+\subsubsection{Menu update (ID 202)}
+\begin{enumerate}
+  \item Client could add new menu
+  \item Client could delete menu
+  \item Client could modify menu  
+\end{enumerate}
+
+\subsubsection{View Order History (ID 203)}
+\begin{enumerate}
+  \item Client could see order lists customers ordered
+  \item Client could see order history already served
+\end{enumerate}
+
+
+\subsection{Server Side}
+
+\subsubsection{Check order (ID 301)}
+\begin{enumerate}
+  \item Sum menu input from NUGU
+  \item Response to NUGU
+  \begin{enumerate}
+    \item Receive orders from the Nugu speaker with Intent and Entity and send them to server
+    \item aggregate orders based on Entity in the Backend proxy
+    \item Send aggregated orders on the Nugu speakers
+    \item Order confirmed by user with TTS function in NUGU speaker
+    \item If the order is correct, backend proxy stores the order in DB
+  \end{enumerate}
+\end{enumerate}\item 
+
+\subsubsection{Send order to database (ID 302)}
+\begin{enumerate}
+  \item Server get orders from NUGU speaker
+  \item Server keep these orders in database  
+\end{enumerate}
+
+
+\subsubsection{Make json for NUGU (ID 303)}
+\begin{enumerate}
+  \item Server should make json file for learning of NUGU speaker  
+\end{enumerate}
+
+
+\section{Development Environment}
+
+\subsection{Software Development Platforms}
 
 We chose Web environment to develop our project. Many applications can be run on the Web. Web technology(Node.js) will be used to show that voice kiosks work properly. In addition, we will use RDS to apply what we have learned in class, and additionally use AWS commercial cloud platforms such as EC2, S3, etc. SKT's NUGU API will be used to analyze users' voice commands and translate them into text.
 
@@ -545,7 +626,7 @@ We think the delivery app is the same situation as the kiosk we are currently th
 T-Map x NUGU introduced a voice service for Starbucks' "Siren Order". The combination of "T-Map x Nugu" and "Siren Order" makes it possible for users to order for various Starbucks products with voice, even while driving. Orders are based on voice while driving, followed by beverage selection, neighborhood store selection, order product confirmation, order receipt and payment. In addition, linking T-map, by forwarding the order to the store within five minutes of arrival at the designated store, users were able to improve the inconvenience of waiting for the ordered product at the store for a long period of time, while considering the freshness of the product.
 % 출처 필요
 
-\section{Task Distribution}
+\subsection{Task Distribution}
 
 Task Distribution is shown in Table 3. Note that each project participants periodically switched their roles with the others to apply different perspectives and improve their expriences.
 
@@ -567,83 +648,101 @@ Task Distribution is shown in Table 3. Note that each project participants perio
 \end{table}
 
 \section{Specification}
-Our service helps people who are not familiar with KIOSK to place voice-based orders. When the user presses the Speech Recognition button for an order and speaks, the voice file is passed to the server that was built with AWS. The server delivers the voice recognition file to the NUGU platform, which converts the voice file to text and returns the result to the server. (Results consist of text.) The server receives confirmation from the user about the order and then places the actual order within the server based on the user-requests.
 
-\subsection{Speech To Order(ID: 110)}
-\subsubsection{Receiving Voice Input from a User}
+\subsection{User side}
+
+\subsubsection{View Menu List (ID 101)}
 \begin{enumerate}
-  \item Receive raw voice input from users
-  \item Send it to the server
+  \item Client should provide menu  
 \end{enumerate}
 
-\subsubsection{Voice Preprocessing and Noise Removal(ID: 120)}
+\subsubsection{Order by Voice (ID 102)}
 \begin{enumerate}
-  \item Receive voice from KIOSK
-  \item Noise rejection for better voice processing
-  \item Send noise-free voice to the NUGU server
+  \item Quantity of a menu in a order cannot pass 10
+  \item End ordering when customers say '주문 끝'  
 \end{enumerate}
 
-\subsubsection{Convert preprocessed speech into text data(Speech-To-Text)(ID: 130)}
+
+\subsubsection{Check Menu (ID 103)}
 \begin{enumerate}
-  \item Receive noise-free voice
-  \item Convert the voice to text
-  \item Send the voice back to the server
+  \item NUGU speaker asks customers whether order is right  
 \end{enumerate}
 
-\subsubsection{Extract order data from text data(ID: 140)}
+
+\subsection{Client Side}
+
+\subsubsection{Log-in (ID 201)}
 \begin{enumerate}
-  \item Receive converted text data from NUGU server
-  \item Extract only significant data relevant to the order
-  \item From extracted information, create mapping order content(menu, quantitiy, etc)
-  \item Send the information to KIOSK
+  \begin{figure}[h!]
+    \includegraphics[width=\linewidth]{figures/mockup/Login.png}
+    \caption{Login}
+    \label{fig:mockup}
+  \end{figure}  
+  \item Client could login with SKT ID  
+  \begin{figure}[h!]
+    \includegraphics[width=\linewidth]{figures/mockup/Main.png}
+    \caption{Main}
+    \label{fig:mockup}
+  \end{figure}
+  \item After log-in clients could choose menu management or check order list
 \end{enumerate}
 
-\subsubsection{Validate Extracted Order Data(ID: 150)}
+
+\subsubsection{Menu update (ID 202)}
 \begin{enumerate}
-  \item Receive the interpreted order information from the server
-  \item Diplay the order information on the screen
-  \item The user checks whether the order information given is correct or not
-  \begin{itemize}
-    \item If the order is correct, add the order item to the order list
-    \item If the order is wrong, delete the order item and repeat from the beginning
-  \end{itemize}
-  \item If the user has more to order, repeat from the beginning
+  \begin{figure}[h!]
+    \includegraphics[width=\linewidth]{figures/mockup/Menu_list.png}
+    \caption{Menu management}
+    \label{fig:mockup}
+  \end{figure}
+  \item Client could see menu list of the store
+  \begin{figure}[h!]
+    \includegraphics[width=\linewidth]{figures/mockup/Add_menu.png}
+    \caption{Add Menu}
+    \label{fig:mockup}
+  \end{figure}
+  \item Clients should enter menu name and price to add menu
+  \item Clients should check all the synonyms for learning of NUGU speaker
 \end{enumerate}
 
-\subsection{PoS: Point of Sales System(ID: 210)}
+
+\subsubsection{View Order History (ID 203)}
 \begin{enumerate}
-  \item Show all menu list
-  \item Add an order item to the total order list
-  \item Show a summary of an entire order list on the screen
-  \item Payment Process (Not covered in this project)
-  \item Send an order list to the server
+  \begin{figure}[h!]
+    \includegraphics[width=\linewidth]{figures/mockup/OrderList.png}
+    \caption{Order List}
+    \label{fig:mockup}
+  \end{figure}
+  \item Clients could see order lists in a page
+  \begin{figure}[h!]
+    \includegraphics[width=\linewidth]{figures/mockup/OrderHistory.png}
+    \caption{Order History}
+    \label{fig:mockup}
+  \end{figure}
+  \item When orders are served client could see orders in order history
 \end{enumerate}
 
-\subsection{Specification}
 
-\subsubsection{ID: 110}
+\subsection{Server Side}
+
+\subsubsection{Check order (ID 301)}
 \begin{enumerate}
-  \item The length of voice received from the client is limited to up to 30 seconds.
-  \item Voice should be mentioned in order of menu and quantity. \\
-  ex) Hamburger hana(One), Cola du(Two) gae
+  \item When customer order, NUGU speaker check each menus
+  \item Customer should confirm what they ordered
+  \item Server give customers order number
+  \item Customer can check what they ordered with order number  
 \end{enumerate}
 
-\subsubsection{ID: 130}
+\subsubsection{Send order to database (ID 302)}
 \begin{enumerate}
-  \item Use NUGU API
+  \item When customer confirm all the orders, server confirm the orders and keep in database  
 \end{enumerate}
 
-\subsubsection{ID: 140}
+\subsubsection{Make json for NUGU (ID 303)}
 \begin{enumerate}
-  \item Menu word, quantity word classified as signal data
-  \item Match each menu and quantity
-  \item When a word regarding quantity is encountered, it is recognized as the end of the corresponding menu-related order.
+  \item When clients update menu, server should make json file
 \end{enumerate}
 
-\subsubsection{ID: 210}
-\begin{enumerate}
-  \item To show the behavior of KIOSK, show the same menu as the menu of any store.
-\end{enumerate}
 
 \section{Architecture Design}
 
@@ -699,6 +798,61 @@ Webpack is a module bundler used to combine all codes and resources in a project
 
 \subsubsection{Babel}
 Babel is a JavaScript transpiler that converts React syntax into plain JavaScript codes, downgrades ES6+ JavaScript syntax into ES5 syntax. This is a required module to execute React-based project.
+
+
+\subsection{Directory Organization - Backend}
+\begin{table}[ht!] \renewcommand\arraystretch{1.25}
+  \begin{threeparttable}
+    \caption{Directory Organization for Backend Application Project%
+    \label{tab:table6}}    %% Caption above tabular, label inside caption
+    \begin{tabular}{@{}l l>{\raggedright\arraybackslash}p{3.2cm}@{}}
+    \toprule
+    \bfseries Directory & \bfseries File name(s) & \multicolumn{1}{l}{\bfseries Modules used} \\
+    \midrule
+      /api/store &	index.js, store.controller.js	& Express, Sequelize \\
+      /api/menu &	index.js, menu.controller.js	& Express, Sequelize \\
+      /api/common & baseResult.js, & - \\
+      /config & sequelize.json & - \\
+      /models & MENU-TB.js & Sequelize \\
+      /bin	& www.js	& Express \\
+      .	& app.js, Dockerfile	& Express \\
+      \bottomrule
+      \end{tabular}
+  \end{threeparttable}
+\end{table}
+
+\subsubsection{/api/store}
+Node.js codes implementing API that related to store information and 'make order' business logic. In API, Express and Sequelize modules are used.
+
+\subsubsection{/api/menu} 
+Node.js codes implementing API that related to menu-information business logic. In API, Express and Sequelize modules are used.
+
+\subsubsection{/api/common} 
+Node.js codes including basic API response format, function that checks whether HTTP Request sender is legit or not and event-handler on some specific HTTP connection event. 
+
+\subsubsection{/config}
+In order to use sequelize module in Node.js file, configuration about DB connection needed. sequelize.json files contain database name,address of host ,password and type of database.
+
+\subsubsection{/models}
+Querying database using sequelize needs certain model definition or configuration about table in that database. In models folders, all table in database are defined in JavaScript syntax. Then Index.js file imports that *table-definition JavaScript file* and sets connection between Node.js and Sequelize module.
+
+\subsubsection{/bin}
+Entry point of visquit-backend service. In www.js file, using express module,listen specific port.
+
+\subsubsection{app.js,Dockerfile}
+app.js routes incoming HTTP request into proper API handler. We use Docker , so docker configuration file,Dockerfile,needed.
+
+\subsubsection{Express}
+Express is Web framework used in our project. Using this module, we don't *reinvent the wheel* about HTTP service. Express provide simple and convenient middle-ware like routing,error-handler,cookie and parser. Many of above middle-ware can be implemented custom way that we want to make.
+
+\subsubsection{Sequelize}
+We use ORM(Object-relational mapping) module named Sequelize for database querying. Using this module, we don't have to write *long and complex* SQL Query statement, just simply use function like findOne,findAll,destroy,create to get data from database.
+
+\subsubsection{express-list-endpoints} 
+Simple module that list all API entry point URL and type(GET,POST,PUT,PATCH,DELETE) . We use this module to print out currently implemented API list. 
+
+\subsubsection{bodyParser} 
+In order to parsing HTTP request body, we use bodyParser module.
 
 \section{Use Cases}
 
