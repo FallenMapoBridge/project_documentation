@@ -702,6 +702,92 @@ Babel is a JavaScript transpiler that converts React syntax into plain JavaScrip
 
 \section{Use Cases}
 
+\subsection{Frontend UI}
+
+\subsubsection{Initial Landing}
+
+\begin{figure}[h!]
+  \includegraphics[width=\linewidth]{figures/frontend/01-landing.png}
+  \caption{Initial Landing Page of Frontend UI}
+  \label{fig:01-landing}
+\end{figure}
+
+When a user (typically, a restaurant's owner or manager) access our service, he or she will see this initial landing page. Then the user can choose which feature to use.
+
+\subsubsection{View Menu List}
+
+\begin{figure}[h!]
+  \includegraphics[width=\linewidth]{figures/frontend/02-menulist.png}
+  \caption{Viewing menu list}
+  \label{fig:02-menulist}
+\end{figure}
+
+The user can view all menus registered in the user's context, where only menus served at the user's restaurant are shown. If the user click the arrow button on top-left side, the menu bar can be toggled to hide or be shown.
+
+\subsubsection{Add New Menu}
+
+\begin{figure}[h!]
+  \includegraphics[width=\linewidth]{figures/frontend/03-newmenu-landing.png}
+  \caption{Page of Adding New Menu}
+  \label{fig:03-newmenu-landing}
+\end{figure}
+
+When clicking 'Add New Menu' the button on the left, the user will be routed to menu adding page. The user can fill each forms and these values will be sent to the server.
+
+\subsubsection{Generating String Data for AI's Learning}
+
+\begin{figure}[h!]
+  \includegraphics[width=\linewidth]{figures/frontend/04-newmenu-ai.png}
+  \caption{Generating String data for AI's Learning}
+  \label{fig:04-newmenu-ai}
+\end{figure}
+
+For SKTelecom's NUGU Speaker's AI to construct model for processing menu data, it is helpful to provide learning data of a new menu from frontend logic. When the user types in a new menu's name, that string will be used for generating all possible permutations of menu names. For example, if the user types in 'Quatro Cheese Burger', then the frontend logic will autometically generate 'Quatro Cheese Burger', 'Cheese Quatro Burger', 'Quatro Burger Cheese', ... etc. After that, the user can choose what to pass to the server for learning.
+
+\subsubsection{Prompting Modal for each actions}
+
+\begin{figure}[h!]
+  \includegraphics[width=\linewidth]{figures/frontend/05-newmenu-modal.png}
+  \caption{Prompting Modal for each actions}
+  \label{fig:05-newmenu-modal}
+\end{figure}
+
+The user's each actions that triggers interaction with REST API will be double-checked by frontend UI. If the user tries to create, update, or delete a menu, a modal window will be shown on the top of the UI and ask again. When the user clicks 'Yes', the intended action will be executed. Else, the action will be aborted.
+
+\subsubsection{Edit Previous Menu}
+
+\begin{figure}[h!]
+  \includegraphics[width=\linewidth]{figures/frontend/06-editmenu-landing.png}
+  \caption{Editting previous menu}
+  \label{fig:06-editmenu-landing}
+\end{figure}
+\begin{figure}[h!]
+  \includegraphics[width=\linewidth]{figures/frontend/07-editmenu-modal.png}
+  \caption{Prompting Modal for each actions}
+  \label{fig:07-editmenu-modal}
+\end{figure}
+
+When clicking a item on the 'View Menu List' page, the user will be routed to 'Edit Menu' page. The features provided is identitcal to 'Add New Menu', except the target menu already exists. A modal will appear when an action is triggered as well.
+
+\subsubsection{View Current Order List}
+
+\begin{figure}[h!]
+  \includegraphics[width=\linewidth]{figures/frontend/08-orderlist.png}
+  \caption{View Current Order List}
+  \label{fig:08-orderlist}
+\end{figure}
+
+When clicking 'Current Order List' button on the left-side menu, the user will be routed to the page where the user can view all orders pending. 
+
+\subsubsection{Process Pending Orders}
+
+\begin{figure}[h!]
+  \includegraphics[width=\linewidth]{figures/frontend/09-order-finish-modal.png}
+  \caption{View Current Order List}
+  \label{fig:09-order-finish-modal}
+\end{figure}
+
+When clicking a item on the 'Current Order List' page, the frontend UI will double-check whether the particular order is really done. When the user click 'Yes', the order's status for ready will be changed to 'true'.
 
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
@@ -798,31 +884,16 @@ Babel is a JavaScript transpiler that converts React syntax into plain JavaScrip
 % \fnbelowfloat command of the stfloats package.
 
 
-
-
-\section{Conclusion}
-Not added yet :)
-
-
-
-
 % conference papers do not normally have an appendix
 
 % use section* for acknowledgment
-\ifCLASSOPTIONcompsoc
-  % The Computer Society usually uses the plural form
-  \section*{Acknowledgments}
-\else
-  % regular IEEE prefers the singular form
-  \section*{Acknowledgment}
-\fi
-
-
-The authors would like to thank...
-
-
-
-
+% \ifCLASSOPTIONcompsoc
+%   % The Computer Society usually uses the plural form
+%   \section*{Acknowledgments}
+% \else
+%   % regular IEEE prefers the singular form
+%   \section*{Acknowledgment}
+% \fi
 
 % trigger a \newpage just before the given reference
 % number - used to balance the columns on the last page
@@ -846,13 +917,13 @@ The authors would like to thank...
 % <OR> manually copy in the resultant .bbl file
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
-\begin{thebibliography}{1}
+% \begin{thebibliography}{1}
 
-\bibitem{IEEEhowto:kopka}
-H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
-  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+% \bibitem{IEEEhowto:kopka}
+% H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
+%   0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
 
-\end{thebibliography}
+% \end{thebibliography}
 
 
 
