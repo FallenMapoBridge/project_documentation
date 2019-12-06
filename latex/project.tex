@@ -508,7 +508,7 @@ In addition, the UI is configured to maximize the clarity of the content by usin
     \item Order confirmed by user with TTS function in NUGU speaker
     \item If the order is correct, backend proxy stores the order in DB
   \end{enumerate}
-\end{enumerate}\item 
+\end{enumerate}
 
 \subsubsection{Send order to database (ID 302)}
 \begin{enumerate}
@@ -673,13 +673,13 @@ Task Distribution is shown in Table 3. Note that each project participants perio
 
 \subsubsection{Log-in (ID 201)}
 \begin{enumerate}
-  \begin{figure}[h!]
+  \begin{figure}[ht!]
     \includegraphics[width=\linewidth]{figures/mockup/Login.png}
     \caption{Login}
     \label{fig:mockup}
   \end{figure}  
   \item Client could login with SKT ID  
-  \begin{figure}[h!]
+  \begin{figure}[ht!]
     \includegraphics[width=\linewidth]{figures/mockup/Main.png}
     \caption{Main}
     \label{fig:mockup}
@@ -690,13 +690,13 @@ Task Distribution is shown in Table 3. Note that each project participants perio
 
 \subsubsection{Menu update (ID 202)}
 \begin{enumerate}
-  \begin{figure}[h!]
+  \begin{figure}[ht!]
     \includegraphics[width=\linewidth]{figures/mockup/Menu_list.png}
     \caption{Menu management}
     \label{fig:mockup}
   \end{figure}
   \item Client could see menu list of the store
-  \begin{figure}[h!]
+  \begin{figure}[ht!]
     \includegraphics[width=\linewidth]{figures/mockup/Add_menu.png}
     \caption{Add Menu}
     \label{fig:mockup}
@@ -708,13 +708,13 @@ Task Distribution is shown in Table 3. Note that each project participants perio
 
 \subsubsection{View Order History (ID 203)}
 \begin{enumerate}
-  \begin{figure}[h!]
+  \begin{figure}[ht!]
     \includegraphics[width=\linewidth]{figures/mockup/OrderList.png}
     \caption{Order List}
     \label{fig:mockup}
   \end{figure}
   \item Clients could see order lists in a page
-  \begin{figure}[h!]
+  \begin{figure}[ht!]
     \includegraphics[width=\linewidth]{figures/mockup/OrderHistory.png}
     \caption{Order History}
     \label{fig:mockup}
@@ -750,7 +750,7 @@ Task Distribution is shown in Table 3. Note that each project participants perio
 
 Our service is web-based application and heavily depends on Amazon Web Service for deployment. Our application's UI is implemented with React.js. Our server is implemented by Node.js with Express.js web server on it to serve service data to frontend UI as REST API, and interact with SKTelecom NUGU's API and speaker. (DESCRIPTION FOR INFRA AND CLOUD ARCHITECTURE SHOULD BE ADDED). Figure 1 shows overall architecture of the service.
 
-\begin{figure}[h!]
+\begin{figure}[ht!]
   \includegraphics[width=\linewidth]{figures/architecture.png}
   \caption{Overall system architecture diagram}
   \label{fig:architecture}
@@ -860,7 +860,7 @@ In order to parsing HTTP request body, we use bodyParser module.
 
 \subsubsection{Initial Landing}
 
-\begin{figure}[h!]
+\begin{figure}[ht!]
   \includegraphics[width=\linewidth]{figures/frontend/01-landing.png}
   \caption{Initial Landing Page of Frontend UI}
   \label{fig:01-landing}
@@ -870,7 +870,7 @@ When a user (typically, a restaurant's owner or manager) access our service, he 
 
 \subsubsection{View Menu List}
 
-\begin{figure}[h!]
+\begin{figure}[ht!]
   \includegraphics[width=\linewidth]{figures/frontend/02-menulist.png}
   \caption{Viewing menu list}
   \label{fig:02-menulist}
@@ -880,68 +880,68 @@ The user can view all menus registered in the user's context, where only menus s
 
 \subsubsection{Add New Menu}
 
-\begin{figure}[h!]
+\begin{figure}[ht!]
   \includegraphics[width=\linewidth]{figures/frontend/03-newmenu-landing.png}
   \caption{Page of Adding New Menu}
   \label{fig:03-newmenu-landing}
 \end{figure}
 
-When clicking 'Add New Menu' the button on the left, the user will be routed to menu adding page. The user can fill each forms and these values will be sent to the server.
+When clicking '새 메뉴 등록' the button on the left, the user will be routed to menu adding page. The user can fill each forms and these values will be sent to the server.
 
 \subsubsection{Generating String Data for AI's Learning}
 
-\begin{figure}[h!]
+\begin{figure}[ht!]
   \includegraphics[width=\linewidth]{figures/frontend/04-newmenu-ai.png}
   \caption{Generating String data for AI's Learning}
   \label{fig:04-newmenu-ai}
 \end{figure}
 
-For SKTelecom's NUGU Speaker's AI to construct model for processing menu data, it is helpful to provide learning data of a new menu from frontend logic. When the user types in a new menu's name, that string will be used for generating all possible permutations of menu names. For example, if the user types in 'Quatro Cheese Burger', then the frontend logic will autometically generate 'Quatro Cheese Burger', 'Cheese Quatro Burger', 'Quatro Burger Cheese', ... etc. After that, the user can choose what to pass to the server for learning.
+For SKTelecom's NUGU Speaker's AI to construct model for processing menu data, it is helpful to provide learning data of a new menu from frontend logic. When the user types in a new menu's name, that string will be used for generating all possible permutations of menu names. For example, if the user types in '콰트로 치즈 버거', then the frontend logic will autometically generate '콰트로 치즈 버거', '치즈 콰트로 버거', '콰트로 버거 치즈', ... etc. After that, the user can choose what to pass to the server for learning.
 
 \subsubsection{Prompting Modal for each actions}
 
-\begin{figure}[h!]
+\begin{figure}[ht!]
   \includegraphics[width=\linewidth]{figures/frontend/05-newmenu-modal.png}
   \caption{Prompting Modal for each actions}
   \label{fig:05-newmenu-modal}
 \end{figure}
 
-The user's each actions that triggers interaction with REST API will be double-checked by frontend UI. If the user tries to create, update, or delete a menu, a modal window will be shown on the top of the UI and ask again. When the user clicks 'Yes', the intended action will be executed. Else, the action will be aborted.
+The user's each actions that triggers interaction with REST API will be double-checked by frontend UI. If the user tries to create, update, or delete a menu, a modal window will be shown on the top of the UI and ask again. When the user clicks '예', the intended action will be executed. Else, the action will be aborted.
 
 \subsubsection{Edit Previous Menu}
 
-\begin{figure}[h!]
+\begin{figure}[ht!]
   \includegraphics[width=\linewidth]{figures/frontend/06-editmenu-landing.png}
   \caption{Editting previous menu}
   \label{fig:06-editmenu-landing}
 \end{figure}
-\begin{figure}[h!]
+\begin{figure}[ht!]
   \includegraphics[width=\linewidth]{figures/frontend/07-editmenu-modal.png}
   \caption{Prompting Modal for each actions}
   \label{fig:07-editmenu-modal}
 \end{figure}
 
-When clicking a item on the 'View Menu List' page, the user will be routed to 'Edit Menu' page. The features provided is identitcal to 'Add New Menu', except the target menu already exists. A modal will appear when an action is triggered as well.
+When clicking a item on the '메뉴 목록' page, the user will be routed to 'Edit Menu' page. The features provided is identitcal to 'Add New Menu', except the target menu already exists. A modal will appear when an action is triggered as well.
 
 \subsubsection{View Current Order List}
 
-\begin{figure}[h!]
+\begin{figure}[ht!]
   \includegraphics[width=\linewidth]{figures/frontend/08-orderlist.png}
   \caption{View Current Order List}
   \label{fig:08-orderlist}
 \end{figure}
 
-When clicking 'Current Order List' button on the left-side menu, the user will be routed to the page where the user can view all orders pending. 
+When clicking '현재 주문 목록' button on the left-side menu, the user will be routed to the page where the user can view all orders pending. 
 
 \subsubsection{Process Pending Orders}
 
-\begin{figure}[h!]
+\begin{figure}[ht!]
   \includegraphics[width=\linewidth]{figures/frontend/09-order-finish-modal.png}
   \caption{View Current Order List}
   \label{fig:09-order-finish-modal}
 \end{figure}
 
-When clicking a item on the 'Current Order List' page, the frontend UI will double-check whether the particular order is really done. When the user click 'Yes', the order's status for ready will be changed to 'true'.
+When clicking a item on the '현재 주문 목록' page, the frontend UI will double-check whether the particular order is really done. When the user click '예', the order's status for ready will be changed to 'true'.
 
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
