@@ -67,6 +67,7 @@
 \usepackage{graphicx}
 
 \usepackage{kotex}
+\usepackage{makecell}
 
 % Some very useful LaTeX packages include:
 % (uncomment the ones you want to load)
@@ -535,7 +536,7 @@ Node.js is an open-source, cross-platform, JavaScript runtime environment that e
 
 \subsubsection{React.js}
 
-React (also known as React.js or ReactJS) is a JavaScript library for building user interfaces. It is maintained by Facebook and a community of individual developers and companies. React can be used as a base in the development of single-page or mobile applications, as it is optimal for fetching rapidly changing data that needs to be recorded.
+React (also known as React.js or ReactJS) is a JavaScript library for building user interfaces. It is maintained by Facebook and a community of individual developers and companies. React can be used as a base in the development of single-page or mobile applications, as it is optimal for fetching rapidly changing data that needs to be recorded.
 
 \subsubsection{Amazon Web Service EC2}
 
@@ -755,6 +756,309 @@ Our service is web-based application and heavily depends on Amazon Web Service f
   \caption{Overall system architecture diagram}
   \label{fig:architecture}
 \end{figure}
+
+\subsection{NUGU Architecture Design}
+
+\subsubsection{General Setting}
+\begin{itemize}
+  \item Backend Proxy Server:
+  \item Web URL: TBA
+  \item Exception message : “Err Code 404 서버에 연결하지 못했습니다”
+\end{itemize}
+
+\subsubsection{Intent}
+\begin{enumerate}
+  \item Welcome.with.NUGU.INTENT.open
+  \begin{itemize}
+    \item Precondition : In case play session entry is the Innovation Name NUGU.For INTENT.open (In case “Start/Open” is mentioned with the Invocation name)
+    \item Does this INTENT need backend proxy? YES
+    \item Output : 안녕하세요 비스킷입니다. 무엇을 주문하시겠어요? 메뉴 하나씩 주문해주세요.
+  \end{itemize}
+  
+  \item Order
+  \begin{enumerate}
+    \item Order request
+    \begin{itemize}
+      \item Command : (menu), (count), (ending of word) ex) 불고기와퍼 한 개 줘
+      \begin{table}[ht!] \renewcommand\arraystretch{1.25}
+      \centering
+      \begin{tabular}{@{}c | c c c@{}}
+      \hline
+      Example mention & 불고기 와퍼 & 한 개  & 줘               \\ 
+      \hline
+      Category        & menu   & count & ending of word  \\ 
+      \hline
+      Entity          & MENU   & COUNT & STATEMENT       \\
+      \hline
+      \end{tabular}
+      \end{table}      
+    \end{itemize}
+    
+    \item request sample
+    CODE
+    
+    \item Does this INTENT need backend proxy? YES
+    
+    \item Action for Order Intent : order\_confirm
+    \begin{table}[ht!] \renewcommand\arraystretch{1.25}
+      \centering
+        \begin{tabular}{@{}c | c c c c@{}}
+        \hline
+        \makecell{NUGU \\ response} & 불고기 와퍼 & 한 개 & 주문되었습니다 & \makecell{더 주문할 것 \\ 있으신가요?}  \\ 
+        \hline
+        Category        & menu   & count & mention & mention  \\ 
+        \hline
+        \makecell{Utterance \\ parameter}  & {{menu}}   & {{count}} & fixed statement & fixed statement       \\
+        \hline
+        \end{tabular}
+    \end{table}  
+  
+  \end{enumerate}
+
+  \item Ask something
+  \begin{enumerate}
+    \item ask.taste
+    \begin{itemize}
+      \item ask some menu is salty or not.
+      \item Command : (menu), (ending of word) ex) 불고기와퍼 싱거워?
+      \begin{table}[ht!] \renewcommand\arraystretch{1.25}
+        \centering
+          \begin{tabular}{@{}c | c c @{}}
+          \hline
+          Example mention & 불고기 와퍼 & 싱거워?  \\ 
+          \hline
+          Category        & menu   & ending of word  \\ 
+          \hline
+          Entity  & MENU   & TASTE   \\
+          \hline
+          \end{tabular}
+      \end{table}  
+
+      \item Does this INTENT need backend proxy? NO
+      \item Action for ask.taste : answer\_taste
+      \begin{table}[ht!] \renewcommand\arraystretch{1.25}
+        \centering
+          \begin{tabular}{@{}c | c c c @{}}
+          \hline
+          NUGU response & 불고기 와퍼 & 는  & 짠편입니다 \\ 
+          \hline
+          Category        & menu   & postposition & taste \\ 
+          \hline
+          Utterance parameter  & {{menu}}   & fixed postposition & {{taste}} \\
+          \hline
+          \end{tabular}
+      \end{table}  
+    \end{itemize}
+    
+    \item ask.spicy
+    \begin{itemize}
+      \item ask some menu is spicy of not.
+      \item Command : (menu), (ending of word) ex) 불고기와퍼 매워?
+      \begin{table}[ht!] \renewcommand\arraystretch{1.25}
+        \centering
+          \begin{tabular}{@{}c | c c @{}}
+          \hline
+          Example mention & 불고기 와퍼 & 매워?  \\ 
+          \hline
+          Category        & menu   & ending of word  \\ 
+          \hline
+          Entity  & MENU   & SPICY   \\
+          \hline
+          \end{tabular}
+      \end{table}  
+
+      \item Does this INTENT need backend proxy? NO
+      \item Action for ask.spicy : answer\_spicy
+      \begin{table}[ht!] \renewcommand\arraystretch{1.25}
+        \centering
+          \begin{tabular}{@{}c | c c c @{}}
+          \hline
+          NUGU response & 불고기 와퍼 & 는  & 맵지않습니다 \\ 
+          \hline
+          Category        & menu   & postposition & spicy \\ 
+          \hline
+          Utterance parameter  & {{menu}}   & fixed postposition & {{spicy}} \\
+          \hline
+          \end{tabular}
+      \end{table} 
+      
+    \end{itemize}
+
+    \item ask.recommend
+    \begin{itemize}
+      \item ask to recommend delicious menu.
+    \end{itemize}
+  \end{enumerate}
+
+  \item End\_Order
+  \begin{enumerate}
+    \item Say you don’t have anything to order
+    \item Command : (menu), (ending of word) ex) 불고기와퍼 매워? 
+    \begin{table}[ht!] \renewcommand\arraystretch{1.25}
+      \centering
+        \begin{tabular}{@{}c | c  @{}}
+        \hline
+        Example mention & 더 주문할거 없어 \\ 
+        \hline
+        Category        & tell no more order \\ 
+        \hline
+        Entity  & END \\
+        \hline
+        \end{tabular}
+    \end{table} 
+
+    \item request sample
+    CODE
+    \item Does this INTENT need backend proxy? YES
+    \item Action for End\_Order : End\_Order
+    \begin{table}[ht!] \renewcommand\arraystretch{1.25}
+      \centering
+        \begin{tabular}{@{}c | c c @{}}
+        \hline
+        NUGU response & 주문이 완료되었습니다 \\ 
+        \hline
+        Category        & statement \\ 
+        \hline
+        Utterance parameter  & fixed statement \\
+        \hline
+        \end{tabular}
+    \end{table} 
+
+  \end{enumerate}
+
+  \item Check ordered Menu
+\end{enumerate}
+
+\subsubsection{Entitiy}
+\begin{enumerate}
+  \item Menu
+  \begin{itemize}
+    \item Menus to order
+    \begin{table}[ht!] \renewcommand\arraystretch{1.25}
+      \centering
+        \begin{tabular}{@{}c | c @{}}
+        \hline
+        Parameter & synonym \\ 
+        \hline
+        불고기와퍼 & \makecell{불고기와퍼, 와퍼불고기, \\ 불고기 들어간 와퍼} \\ 
+        \hline
+        치즈와퍼 & \makecell{치즈와퍼, 와퍼치즈, \\ 치즈 들어간 와퍼, \\ 치즈맛 와퍼} \\
+        \hline
+        치즈스틱 & 치즈스틱, 스틱치즈 \\
+        \hline
+        콜라 & 콜라, coke \\
+        \hline
+        아이스아메리카노 &	\makecell{아이스아메리카노, \\ 아메리카노 아이스, \\ 시원한 아메리카노} \\
+        \hline
+        따뜻한아메리카노	& \makecell{따뜻한아메리카노, \\ 아메리카노 따뜻한거, \\ 아메리카노 핫} \\
+        \hline
+        \end{tabular}
+    \end{table} 
+
+  \end{itemize}
+
+  \item COUNT
+  \begin{itemize}
+    \item Quantity of menu
+    \begin{table}[ht!] \renewcommand\arraystretch{1.25}
+      \centering
+        \begin{tabular}{@{}c | c @{}}
+        \hline
+        Parameter & synonym \\ 
+        \hline
+        1 & 한개, 하나, 한잔, 하나만 \\ 
+        \hline
+        2 & 두개, 두잔 \\
+        \hline
+        3 & 세개, 세잔 \\
+        \hline
+        ... & ... \\
+        \hline
+        \end{tabular}
+    \end{table} 
+
+  \end{itemize}
+
+  \item END
+  \begin{itemize}
+    \item Indicate the termination of order.
+    \begin{table}[ht!] \renewcommand\arraystretch{1.25}
+      \centering
+        \begin{tabular}{@{}c | c @{}}
+        \hline
+        Parameter & synonym \\ 
+        \hline
+        END & \makecell{END, 더 없어, \\ 주문끝, 없어, \\ 없습니다, …}	 \\ 
+        \hline
+        \end{tabular}
+    \end{table} 
+
+  \end{itemize}
+
+  \item Statement
+  \begin{itemize}
+    \item Conjunctive Ending
+    \begin{table}[ht!] \renewcommand\arraystretch{1.25}
+      \centering
+        \begin{tabular}{@{}c | c @{}}
+        \hline
+        Parameter & synonym \\ 
+        \hline
+        주세요 & 줘, 요, 주세요, 줘요	 \\ 
+        \hline
+        \end{tabular}
+    \end{table} 
+
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{Actions}
+\begin{enumerate}
+  \item NUGU.ACTION.Welcome
+  \begin{itemize}
+    \item Action when first entering a play
+    \item Play call name (Invocation name) and NUGU, as shown in ‘아리야 VISQUIT 시작’ in Device Standby (IDLE).When igniting INTENT.open together, - In this case, the Prompt corresponding to ‘Invocation name only’ will be mentioned, after which Prompt will be switched on, and the Prompt will be referred to as ‘Standby Prompt’.
+    \item This action is taken when the user enters the play by mentioning the name of the play and the Custom Intent inside the play, such as ‘아리야 VISQUIT에서 아이스아메리카노 한잔 줘’ in the Device Standby (IDLE). - In this case, the Prompt corresponding to the ‘Invocation name and Intent’ are glued to the front of the response These are called ‘continuous Prompt’.
+  \end{itemize}
+  
+  \item NUGU.ACTION.exit
+  \begin{itemize}
+    \item NUGU, where the user is in the Play session, including ‘주문 종료’ and ‘더 주문할거 없어’.Operation is performed when INTENT.stop is in placed.
+    \item After Prompt has been triggered, the session ends and returns to the IDLE state. These Prompts are referred to as ‘End Prompt’.
+  \end{itemize}
+
+  \item NUGU.ACTION.rewind
+  \begin{itemize}
+    \item NUGU, for example, user ‘다시’.Action in case of ignition corresponding to INTENT.rewind.
+    \item This action does not have a response and performs a command to play the most recent response from scratch.
+  \end{itemize}
+
+  \item NUGU.ACTION.fallback
+  \begin{itemize}
+    \item Action triggered in case of not being able to handle this play
+    \item This will work if the user has made a mention within the Play session but does not have the Intent to process.
+    \item Action that works when the user says ‘다시’
+    \item A situation with no Intent to process, i.e. a Fallback situation, is a complex type that mixes the end type and the standby type to form Prompt.
+  \end{itemize}
+
+  \item Order\_confirm
+  \begin{itemize}
+    \item Confirm the order to the customer and send the order to the server
+  \end{itemize}
+
+  \item End\_order
+  \begin{itemize}
+    \item A function that terminates an order.
+    \item When this function is enabled, it informs the server that the order has been terminated.
+  \end{itemize}
+
+  \item Check\_order
+  \begin{itemize}
+    \item Request when you want to check the customer’s order
+    \item Invoke orders from the database and forward them through the server to the NUGU speaker to speak to the customer.
+  \end{itemize}
+
+\end{enumerate}
 
 \subsection{Directory Organization - Frontend}
 
