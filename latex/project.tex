@@ -1060,6 +1060,61 @@ Our service is web-based application and heavily depends on Amazon Web Service f
 
 \end{enumerate}
 
+\subsection{Database Design}
+
+\begin{figure}[ht!]
+  \includegraphics[width=\linewidth]{figures/database.PNG}
+  \caption{Database architecture diagram}
+  \label{fig:database}
+\end{figure}
+
+\subsubsection{USER\_TB}
+\begin{itemize}
+  \item user\_id(PK): identification of user(store owner)
+  \item user\_name: user's name
+  \item user\_login: information of user login(like token)
+\end{itemize}
+
+\subsubsection{STORE\_TB}
+\begin{itemize}
+  \item store\_id(PK): identification of store
+  \item user\_id(FK): reference USER\_TB table
+  \begin{itemize}
+    \item one user could own multiple shops
+  \end{itemize}
+  \item store\_device: NUGU speaker device identification of each store
+  \item store\_location: location information of the store
+  \item store\_tel: telephone number of the store
+\end{itemize}
+
+\subsubsection{MENU\_TB}
+\begin{itemize}
+  \item menu\_id(PK): identification of menu
+  \item store\_id(FK): reference STORE\_TB table
+  \begin{itemize}
+    \item one store could have multiple menus
+  \end{itemize}
+  \item menu\_name: name of menu
+  \item menu\_price: price of menu
+\end{itemize}
+
+\subsubsection{ORDERS\_TB}
+\begin{itemize}
+  \item order\_id(PK): identification of order
+  \item store\_id(FK): reference STORE\_TB table
+  \item menu\_id(FK): reference MENU\_TB table
+  \begin{itemize}
+    \item one menu could be ordered multiple times
+  \end{itemize}
+  \item order\_date: date of order
+  \item order\_num: number of order
+  \item order\_time: time information of the order
+  \item order\_quantity: quantity of menu in order
+  \item order\_price: price of menu\_id times order\_quantity
+  \item serve\_fl: flag of information whether order is served or not
+\end{itemize}
+
+
 \subsection{Directory Organization - Frontend}
 
 Table 4 shows the directory organization of React.js frontend application's project.
