@@ -409,7 +409,7 @@ Email: hsw0194@gmail.com}
 % in the abstract
 \begin{abstract}
 
-VISQUIT is a Kiosk service powered by voice recognition technology based on artificial intelligence. Nowadays, many stores adopt using Kiosk system, by which the cost of hiring clerks and the time spent to make an individual order reduce. People who are accustomed to digital-based system has no much difficulty using this type of new method in store, but for those people who are digitally illiterate, even ordering their meal in a restaurant is a hard task. To solve the problem with current Kiosk system's poor user experience, we suggest using voice recognition technology to compose the ordering system's UI. This can effectively replace the previous "select-based" ordering system with "speech-based". Based on this approach, we will develop and propose new paradigm of designing UI of Kiosk system.
+VISQUIT is a Kiosk service powered by voice recognition technology based on artificial intelligence. Nowadays, many stores adopt using Kiosk system, by which the cost of hiring clerks and the time spent to make an individual order reduce. The market of Kiosk system is emerging these days, from 60 billion won in 2006 to 250 billion won in 2017. People who are accustomed to digital-based system has no much difficulty using this type of new method in store, but for those people who are digitally illiterate, even ordering their meal in a restaurant is a hard task. To solve the problem with current Kiosk system's poor user experience, we suggest using voice recognition technology to compose the ordering system's UI. This can effectively replace the previous "select-based" ordering system with "speech-based". Also, our sevice will help expanding the Kiosk's market size by providing better machine with better user experience and reasonable price to customers and restaurant owners. Based on this approach, we will develop and propose new paradigm of designing UI of Kiosk system.
 
 \end{abstract}
 
@@ -444,9 +444,11 @@ Using the artificial intelligence speech recognition technology of SKTelecom's N
 
 In addition, the UI is configured to maximize the clarity of the content by using a large image and text, and to better understand the content by users with low vision. As the size of the content increases, the amount of information that can be contained on one screen decreases, so the UI is designed to implement the same business logic as the existing despite the reduced amount of information.
 
+According to Auction catalog, the price range of Kiosk machines purchased in the market is various, but it costs at least 1 million won, which can reach up to 10 million won. This is not an affordable cost for small businesses. Also, purchasing Kiosk machine and reducing clerks will not result immediate cost savings, so restaurant owners will hesitate to purchase the machine. SKTelecom's NUGU speaker costs 79,000 won, which is maximum 90\% cheaper than previous Kiosk machine, so it will not be a too much burden for small businesses.
+
 \section{Requirements}
 
-\subsection{User side}
+\subsection{User side (Store Customer)}
 
 \subsubsection{View Menu List (ID 101)}
 \begin{enumerate}
@@ -464,7 +466,7 @@ In addition, the UI is configured to maximize the clarity of the content by usin
 \subsubsection{Check Menu (ID 103)}
 \begin{enumerate}
   \item Send an order from the Nugu speaker to the backend proxy
-  \item Total orders in Backend proxy based on Entity
+  \item Process total orders in Backend proxy based on Entity
   \item Transfer the aggregated order back to the Nugu speaker to confirm the order using the TTS function
   \item Send user confirmation to backend proxy
 \end{enumerate}
@@ -474,7 +476,7 @@ In addition, the UI is configured to maximize the clarity of the content by usin
   \item Customer could pay with card  
 \end{enumerate}
 
-\subsection{Client Side}
+\subsection{Client Side (Store Owner)}
 
 \subsubsection{Log-in (ID 201)}
 \begin{enumerate}
@@ -503,7 +505,7 @@ In addition, the UI is configured to maximize the clarity of the content by usin
   \item Response to NUGU
   \begin{enumerate}
     \item Receive orders from the Nugu speaker with Intent and Entity and send them to server
-    \item aggregate orders based on Entity in the Backend proxy
+    \item Aggregate orders based on Entity in the Backend proxy
     \item Send aggregated orders on the Nugu speakers
     \item Order confirmed by user with TTS function in NUGU speaker
     \item If the order is correct, backend proxy stores the order in DB
@@ -527,7 +529,7 @@ In addition, the UI is configured to maximize the clarity of the content by usin
 
 \subsection{Software Development Platforms}
 
-We chose Web environment to develop our project. Many applications can be run on the Web. Web technology(Node.js) will be used to show that voice kiosks work properly. In addition, we will use RDS to apply what we have learned in class, and additionally use AWS commercial cloud platforms such as EC2, S3, etc. SKT's NUGU API will be used to analyze users' voice commands and translate them into text.
+We chose Web environment to develop our project. Many applications can be run on the Web. Web technology(Node.js) will be used to show that voice kiosks work properly. In addition, we will use AWS commercial cloud platforms such as EC2, S3, RDS etc. to apply what we have learned in class. Lastly, SKT's NUGU API will be used to analyze users' voice commands and translate them into text.
 
 \subsubsection{Node.js}
 
@@ -539,7 +541,7 @@ React (also known as React.js or ReactJS) is a JavaScript library for building u
 
 \subsubsection{Amazon Web Service EC2}
 
-Configure an environment where applications can be developed and distributed quickly without the need for physical hardware equipment. Deploy as many virtual servers as you want, configure your security, network, and manage your storage. A sudden change in server spacs can quickly scale up or down depending on the changes, reducing the need for forecasting server traffic.
+Configure an environment where applications can be developed and distributed quickly without the need for physical hardware equipment. Deploy as many virtual servers as you want, configure your security, network, and manage your storage. A sudden change in resources configured for the service can quickly scale up or down depending on the changes, reducing the need for forecasting server traffic.
 
 \subsubsection{Amazon Web Service S3}
 
@@ -610,21 +612,19 @@ Used development environment tools information is described in Table 2.
 % Software in Use
 
 \subsubsection{Kiosk Market in Korea}
-Unmanned stores are spreading all over the world. The unmanned store are actively being made due to artificial intelligence, the Internet of Things, the development of sensor technology, the lack of labor force and the minimum wage hike. South Korea has been burdened with labor costs following a 10-percent minimum wage hike for two consecutive years, and the unmanned era is in full swing due to the spread of an "untact" culture that is reluctant to contact. In restaurants, customers order on their own through KIOSK. And unmanned convenience stores have begun to sprout up everywhere. Unmanned store is spreading not only in the retail industry but in almost all areas, regardless of industry. Demand for kiosks is also on the rise as unmanned stores have emerged. A market for unmanned payments using kiosks is emerging. As of 2017, the size of South Korea's kiosk market is estimated to be around 250 billion won, with a high annual growth rate of 14 percent. The market, which stood at only 60 billion won in 2006, rose to 180 billion won in 2013 and rose to 250 billion won in 2017.
-% 조사한 자료는 인용으로 바꾸자
+Unmanned stores are spreading all over the world. The unmanned store are actively being made due to artificial intelligence, the Internet of Things, the development of sensor technology, the lack of labor force and the minimum wage hike. South Korea has been burdened with labor costs following a 10-percent minimum wage hike for two consecutive years, and the unmanned era is in full swing due to the spread of an "untact" culture that is reluctant to contact. In restaurants, customers order on their own through KIOSK. And unmanned convenience stores have begun to sprout up everywhere. As of 2017, the size of South Korea's kiosk market is estimated to be around 250 billion won, with a high annual growth rate of 14 percent. The market, which stood at only 60 billion won in 2006, rose to 180 billion won in 2013 and rose to 250 billion won in 2017.
 
 \subsubsection{Voice Recognition ARS}
-The ARS allowed us to perform the tasks we needed without waiting time. However, the initial ARS was a one-sided way of listening and pressing buttons. As people become accustomed to ARS, they can't wait to get the number of services they need. In addition, the service used was mostly concentrated in some services. Based on this, ARS through voice recognition was able to connect the necessary services quickly by listening to the voice or words. Considering these voice recognition ARS, it is thought that it will help us solve the problem.
+The ARS allowed us to perform the tasks we needed without waiting time. However, the initial ARS was a one-sided way of listening and pressing buttons. As people got used to ARS services, they started feeling that services provided by the ARS is not enough. In addition, people used only limited number of services. Considering these factors, ARS through voice recognition will be able to provide services only requested by users. By doing this, services can be provided much more effectively, by which the time and cost for developing unnecessary features.
 
 \subsubsection{Voice Recognition AI}
-There are services in the market called artificial intelligence voice assistant such as Bixby, Siri, Nugu and Gigagenie. Despite providing convenient services, many people are reluctant to use these services. Understanding these reasons is thought to help us envision the services we will provide in the future.
+There are services in the market called artificial intelligence voice assistant such as Bixby, Siri, Nugu and Gigagenie. Despite providing convenient services, many people are reluctant to use these services. Understanding these reasons will be helpful for us to envision the services we will provide in the future.
 
 \subsubsection{Delivery Application}
-We think the delivery app is the same situation as the kiosk we are currently thinking about. Orders, which were previously made through voice-to-speech conversations over the phone, have been made possible through the application with several touch points. There are many advantages, such as the availability of personalized orders through delivery apps, but it is still a far from those who are not familiar with digital culture. If Kiosk's problem is solved, it is believed that the delivery app will be able to solve the problem in the same way later.
+We think the delivery app is in the same situation as the kiosk we are currently thinking about. Orders, which were previously made through voice-to-speech conversations over the phone, have been made possible through the application with several touch points. There are many advantages, such as the availability of personalized orders through delivery apps, but it is still a far from those who are not familiar with digital culture. If Kiosk's problem is solved, it is believed that the delivery app will be able to solve the problem in the same way later.
 
 \subsubsection{Starbucks Siren Order with Voice}
-T-Map x NUGU introduced a voice service for Starbucks' "Siren Order". The combination of "T-Map x Nugu" and "Siren Order" makes it possible for users to order for various Starbucks products with voice, even while driving. Orders are based on voice while driving, followed by beverage selection, neighborhood store selection, order product confirmation, order receipt and payment. In addition, linking T-map, by forwarding the order to the store within five minutes of arrival at the designated store, users were able to improve the inconvenience of waiting for the ordered product at the store for a long period of time, while considering the freshness of the product.
-% 출처 필요
+T-Map x NUGU introduced a voice service for Starbucks' "Siren Order". The combination of "T-Map x Nugu" and "Siren Order" makes it possible for users to order for various Starbucks products with voice, even while driving. Orders are based on voice while driving, followed by beverage selection, neighborhood store selection, order product confirmation, order receipt and payment. In addition, by linking to T-map's functionalities, the app will forward the order to the store when it is expected to arrive the store within 5 minutes. As a result, the user experience will be improved as waiting time for the ordered beverages will decrease and the freshness of the product will be maintained.
 
 \subsection{Task Distribution}
 
@@ -638,10 +638,10 @@ Task Distribution is shown in Table 3. Note that each project participants perio
       \toprule
       \bfseries Task & \bfseries Assignee & \multicolumn{1}{l}{\bfseries Description} \\
       \midrule
-      Project Manager & Alice & Schedule overall development plan and assign proper jobs to team members \\ 
-      Consumer & Bob & Test and try out a prototype application, gather the potential improvement \\ 
-      User & Chris & Gather basic feature requirement for this project by asking questionnaires the elderly near the university. \\ 
-      Developer & Daniel & Prepare a development environment for this project and build up the application \\
+      Project Manager & Lee Hyo Sik & Schedule overall development plan and assign proper jobs to team members \\ 
+      Consumer & Kim Jung Mo & Test and try out a prototype application, gather the potential improvement \\ 
+      User & Lee Ha Min & Gather basic feature requirement for this project by asking questionnaires the elderly near the university. \\ 
+      Developer & Hwang Sung Woo & Prepare a development environment for this project and build up the application \\
       \bottomrule
       \end{tabular}
   \end{threeparttable}
