@@ -19,6 +19,9 @@ We provide our customers with menu management and order checking functions.
 ![Client UI](/src/Client_UI_1.png)
 ![Client UI](/src/Client_UI_2.png)
 
+## Tips for LaTeX with Korean fonts
+
+Visit [this site](http://wiki.ktug.org/wiki/wiki.php/MacTeX%20%EC%84%A4%EC%B9%98#s-3.2) for setting environments
 
 ## Contributors
 
